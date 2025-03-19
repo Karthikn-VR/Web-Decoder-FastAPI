@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Details</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script>
+        async function fetchScrapedData() {
+            const params = new URLSearchParams(window.location.search);
+            const url = params.get("url");
+
+            if (!url) {
+                // Display sample structure when no URL is provided
+                document.getElementById("content").innerHTML = `
+                    <div class="info"><strong>Title:</strong> Preview title "Provide url"</div>
+                    <div class="info"><strong>Number of Images:</strong> 5</div>
+                    <div class="info"><strong>Total Links:</strong> 10</div>
+                    <div class="info"><strong>Links:</strong> 
+                        <ul>
+                            <li><a href="https://example.com/link1" target="_blank">https://example.com/link1</a></li>
+                            <li><a href="https://example.com/link2" target="_blank">https://example.com/link2</a></li>
+                            <li><a href="https://example.com/link3" target="_blank">https://example.com/link3</a></li>
+                        </ul>
+                    </div>
+                    <div class="info"><strong>Paragraphs:</strong> 3</div>
+                    <div class="info"><strong>Buttons:</strong> 2</div>
+                    <div class="info"><strong>Footer Information:</strong> Copyright © 2023 Sample Inc.</div>
+                    <div class="info"><strong>Available Functions (Scripts):</strong> function1(), function2()</div>
+                `;
+                return;
+            }
+
+            document.getElementById("loading").innerText = "Fetching details...";
+
+            try {
+                let response = await fetch("http://127.0.0.1:8000/scrape/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams({ url: url })
+                });
+
+                let data = await response.json();
+                document.getElementById("loading").innerText = "";
+
+                if (data.error) {
+                    document.getElementById("content").innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    let linksHTML = data.Links.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join("");
+
+                    document.getElementById("content").innerHTML = `
+                        <div class="info"><strong>Title:</strong> ${data.Title || 'N/A'}</div>
+                        <div class="info"><strong>Number of Images:</strong> ${data["Number of Images"] || 0}</div>
+                        <div class="info"><strong>Total Links:</strong> ${data["Total Links"] || 0}</div>
+                        <div class="info"><strong>Links:</strong> <ul>${linksHTML || '<li>No links found</li>'}</ul></div>
+                        <div class="info"><strong>Paragraphs:</strong> ${data.Paragraphs || 0}</div>
+                        <div class="info"><strong>Buttons:</strong> ${data.Buttons || 0}</div>
+                        <div class="info"><strong>Footer Information:</strong> ${data["Footer Information"] || 'N/A'}</div>
+                        <div class="info"><strong>Available Functions (Scripts):</strong> ${data["Available Functions (Scripts)"] || 'N/A'}</div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById("content").innerHTML = `<p>Error fetching data: ${error.message}</p>`;
+                document.getElementById("loading").innerText = "";
+            }
+        }
+
+        window.onload = fetchScrapedData;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Webpage Details</h2>
+        <p id="loading"></p>
+        <div id="content"></div>
+    </div>
+</body>
+</html>

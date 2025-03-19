@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Decoder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="data-stream-overlay"></div>
+    <header class="header">
+        <h1 class="title">Web Decoder</h1>
+        <p class="tagline">Extract the Web’s Hidden Truths</p>
+        <a href="result.html" class="preview-btn">
+            <span class="preview-text">Preview of Result</span>
+            <span class="preview-pulse"></span>
+        </a>
+    </header>
+
+    <main class="main-section">
+        <section class="hero">
+            <div class="scan-grid"></div>
+            <div class="form-container">
+                <form onsubmit="submitURL(event)" class="scrape-form">
+                    <label for="url" class="form-label">Insert URL to Decode</label><br><br>
+                    <div class="input-group">
+                        <input type="url" id="url" name="url" placeholder="https://example.com/" required>
+                        <button type="submit" class="scrape-btn">
+                            <span class="btn-text">Scrape</span>
+                            <span class="btn-pulse"></span>
+                        </button>
+                    </div>
+                </form>
+        
+               
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-text">Made by Karthikn-VR</p>
+    </footer>
+
+    <div class="digital-waves"></div>
+    <div class="data-particles"></div>
+
+    <script>
+        async function submitURL(event) {
+            event.preventDefault();
+            let url = document.getElementById("url").value;
+            if (!url) {
+                alert("Please enter a valid URL");
+                return;
+            }
+            window.location.href = `result.html?url=${encodeURIComponent(url)}`;
+        }
+    </script>
+</body>
+</html>
