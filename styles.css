@@ -7,8 +7,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f5f7fa;
-  color: #2d3748;
+  background: linear-gradient(135deg, #c9b2f0, #b89ae8); 
+  color: #000000;
   padding: 1rem;
   text-align: center;
 }
@@ -19,11 +19,11 @@ body {
     right: 20px;
     padding: 8px 16px;
     background-color: #f0f9ff;
-    color: #0369a1;
+    color: #000000;
     text-decoration: none;
     border-radius: 20px;
     border: 1px solid #bae6fd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 7px 8px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -33,12 +33,12 @@ body {
 
 h1 {
   font-size: 2rem;
-  color: #3b82f6;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .tagline {
-  color: #64748b;
+  color: #ffffff;
   margin-bottom: 2rem;
 }
 
@@ -52,7 +52,7 @@ h1 {
 }
 
 input[type="url"] {
-  width: 100%;
+  width: 90%;
   padding: 0.75rem;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -60,7 +60,7 @@ input[type="url"] {
 }
 
 button {
-  width: 100%;
+  width: 80%;
   padding: 0.75rem;
   background: #3b82f6;
   color: white;
@@ -76,6 +76,6 @@ button:hover {
 
 .footer {
   margin-top: 2rem;
-  color: #94a3b8;
-  font-size: 0.875rem;
+  color: #fffcfc;
+  font-size: 1em;
 }
