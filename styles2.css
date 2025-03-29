@@ -1,17 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@300;600&display=swap');
 
-:root {
-    --data-blue: #00b8ff;
-    --grid-green: #00ff9d;
-    --dark-void: #0d0d1f;
-    --text-light: #f0f6ff;
-    --pulse-glow: rgba(0, 184, 255, 0.5);
-    --glass-glow: rgba(255, 255, 255, 0.08);
-    --shadow-depth: rgba(0, 0, 0, 0.6);
-    --highlight-dark: #1e90ff;
-    --transition-epic: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    --radius-sleek: 25px;
-}
+
 
 * {
     margin: 0;
